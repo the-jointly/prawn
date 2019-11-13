@@ -61,7 +61,7 @@ module Prawn
               disable_wrap_by_char: @disable_wrap_by_char
             )
 
-            if @disable_wrap_height_check || enough_height_for_this_line?
+            if enough_height_for_this_line?
               move_baseline_down
               print_line
             else
@@ -129,6 +129,8 @@ module Prawn
                    @descender + @line_height + @leading
                  end
           require_relatived_total_height = @baseline_y.abs + diff
+          return true if @disable_wrap_height_check
+
           if require_relatived_total_height > @height + 0.0001
             # no room for the full height of this line
             @arranger.repack_unretrieved
