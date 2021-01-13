@@ -200,7 +200,7 @@ module Prawn
     end
 
     def next_image_id
-      @image_counter ||= 0
+      @image_counter ||= state.page.xobjects.count
       @image_counter += 1
     end
   end
