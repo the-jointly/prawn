@@ -61,6 +61,8 @@ module Prawn
               disable_wrap_by_char: @disable_wrap_by_char
             )
 
+            raise Errors::CannotFit if @line_wrap.cannot_fit && @overflow == :truncate
+
             if enough_height_for_this_line?
               move_baseline_down
               print_line
